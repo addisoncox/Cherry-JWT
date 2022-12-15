@@ -88,6 +88,7 @@ class JWTVerifier:
         verification_function = {
             "HS256": hmac_sha_256_verify_mac,
             "ECDSA": ecdsa_verify,
+            "NONE": lambda a, b, c, d: True
         }[self.algorithm]
 
         if self.algorithm == "ECDSA":
@@ -107,7 +108,7 @@ class JWTVerifier:
 
             if self.check_exp_against_current_times and claim == "exp":
                 time_of_exp = datetime.datetime.fromtimestamp(claims[claim])
-                if not time_of_exp < datetime.datetime.now():
+                if not time_of_exp > datetime.datetime.now():
                     raise JWTVerificationException("JWT is expired.")
 
             elif self.claims_validator[claim] != claims[claim]:

@@ -20,10 +20,6 @@ class TestHS256(unittest.TestCase):
         jwt_verifier = JWTVerifier("HS256", "secret", {"message": "Wrong message"})
         self.assertRaises(JWTVerificationException, jwt_verifier.verify, jwt)
 
-    def test_hs256_works_on_bytes_key(self):
-        jwt = JWT({}, "HS256", b"secret").encode()
-        jwt_verifier = JWTVerifier("HS256", b"secret", {})
-        jwt_verifier.verify(jwt)
 
 
 if __name__ == "__main__":

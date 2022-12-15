@@ -52,7 +52,7 @@ jwt = JWT(
     }, 
     algorithm='ECDSA', 
     secret=private_key_pem,
-    format='PEM
+    format='PEM'
 ).encode()
 ```
 
@@ -75,6 +75,17 @@ try:
 except JWTVerificationException as e:
     #handle rejection
     print(e)
+```
+
+## Set header
+```python
+jwt = JWT(
+    claims={
+        'message': 'hello world'
+    }, 
+    algorithm='HS256', 
+    secret='secret'
+).set_header_val('FOO', 'BAR').encode()
 ```
 
 ## Convenience methods for common claims

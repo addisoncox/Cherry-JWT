@@ -1,4 +1,4 @@
-VALID_ALGORITHMS = {'HS256', 'ECDSA'}
+VALID_ALGORITHMS = {'HS256', 'ECDSA', 'NONE'}
 
 def check_is_valid_algorithm(name: str):
    if not name in VALID_ALGORITHMS:
